@@ -23,3 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
         mensajeBienvenida.innerHTML = sessionStorage.getItem('bienvenida') || "¡Bienvenido!";
     }
 });
+document.addEventListener('DOMContentLoaded', () => { 
+    // No pedir nada, solo mostrar un mensaje fijo
+    const mensajeBienvenida = document.getElementById('mensajeBienvenida');
+    if (mensajeBienvenida) {
+        mensajeBienvenida.innerHTML = "¡Bienvenido al sitio!";
+    }
+});
+
