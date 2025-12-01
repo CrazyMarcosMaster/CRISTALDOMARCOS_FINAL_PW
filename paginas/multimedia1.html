@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapas</title>
+<link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body class="multimedia1-page">
+<header><h1>Mapas</h1></header>
+<nav class="navbar">
+    <span class="hamburger" id="hamb">&#9776;</span>
+    <ul id="menu">
+         <li>
+            <a href="../index.html">Inicio</a>
+            
+        </li>
+        <li>
+            <a href="#">HTML Básico</a>
+            <ul class="sin-puntos">
+                
+                <li><a href="../paginas/html_basico.html">Ejemplo HTML</a></li>
+                <li><a href="../paginas/productos.html">Productos</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Banco</a>
+            <ul class="sin-puntos">
+                <li><a href="../paginas/banco_tabla.html">Movimientos</a></li>
+                <li><a href="../paginas/banco_miembros.html">Miembros</a></li>
+            </ul>
+        </li>
+        <li><a href="../paginas/galeria.html">Galería</a></li>
+        <li><a href="../paginas/operaciones.html">Operaciones</a></li>
+        <li>
+            <a href="#">Formularios</a>
+            <ul class="sin-puntos">
+                <li><a href="../paginas/matriculacion.html">Matriculación</a></li>
+                <li><a href="../paginas/prueba.html">Formulario de Prueba</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">APIs</a>
+            <ul class="sin-puntos">
+                <li><a href="../paginas/clima.html">Clima</a></li>
+                <li><a href="../paginas/paises.html">Países</a></li>
+                <li><a href="../paginas/pokemon.html">Pokémon</a></li>
+                <li><a href="../paginas/rick_morty.html">Rick & Morty</a></li>
+                <li><a href="../paginas/criptomonedas.html">Criptomonedas</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Multimedia</a>
+            <ul class="sin-puntos">
+                <li><a href="../paginas/multimedia1.html">Mapas</a></li>
+                <li><a href="../paginas/multimedia2.html">Videos YouTube</a></li>
+                <li><a href="../paginas/multimedia3.html">Videos y Audios</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Red Social</a>
+            <ul class="sin-puntos">
+                <li><a href="../paginas/redsocial.html">Posts</a></li>
+                <li><a href="../paginas/comentarios.html">Comentarios</a></li>
+                <li><a href="../paginas/noticias.html">Noticias</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Menús</a>
+            <ul class="sin-puntos">
+                <li><a href="../paginas/menu1.html">Menú 1</a></li>
+                <li><a href="../paginas/menu2.html">Menú 2</a></li>
+                <li><a href="../paginas/menu3.html">Menú 3</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+<div class="container">
+<h2>Mapa(Google Maps)</h2>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3036.457708963515!2d-3.703790!3d40.416775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4228878b0d115f%3A0x4c0f9b8e0193f2dc!2sMadrid%2C%20España!5e0!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses" 
+width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.9979745740165!2d-58.381592!3d-34.603684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccacc6d1b1b4b%3A0x8e1e6e9f0e94e3c3!2sBuenos%20Aires%2C%20Argentina!5e0!3m2!1ses!2ses!4v1700000000001!5m2!1ses!2ses"
+width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.0!2d-46.653!3d-23.550!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c0d7c34e3d%3A0x57c3d03aa74e6b35!2sSão%20Paulo%2C%20Brasil!5e0!3m2!1ses!2ses!4v1600000000000!5m2!1ses!2ses" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+</div>
+<footer>
+    &copy; 2025 – Proyecto Final • Marcos Cristaldo
+</footer>
+
+<script>
+// MENU MÓVIL FUNCIONAL
+const hamb = document.getElementById('hamb');
+const menu = document.getElementById('menu');
+
+// Toggle menú principal móvil
+hamb.addEventListener('click', () => {
+    menu.classList.toggle('open');
+    // Reset submenús
+    if(menu.classList.contains('open')){
+        document.querySelectorAll('#menu li ul').forEach(ul => ul.classList.remove('submenu-open'));
+    }
+});
+
+// Toggle submenús móviles
+document.querySelectorAll('#menu > li > a').forEach(item => {
+    item.addEventListener('click', e => {
+        const submenu = item.nextElementSibling;
+        if(submenu && submenu.tagName === 'UL'){
+            e.preventDefault();
+            // Cerrar otros submenús
+            document.querySelectorAll('#menu li ul').forEach(ul => {
+                if(ul !== submenu) ul.classList.remove('submenu-open');
+            });
+            // Abrir/Cerrar submenú
+            submenu.classList.toggle('submenu-open');
+        }
+    });
+});
+
+// Reset menú al cambiar tamaño
+window.addEventListener('resize', () => {
+    if(window.innerWidth > 768){
+        menu.classList.remove('open');
+        document.querySelectorAll('#menu li ul').forEach(ul => ul.classList.remove('submenu-open'));
+    }
+});
+
+
+document.querySelectorAll('#menu > li').forEach(li => {
+    let timeout;
+
+    li.addEventListener('mouseenter', () => {
+        const submenu = li.querySelector('ul');
+        if(submenu){
+            clearTimeout(timeout);
+            submenu.style.display = 'flex';
+        }
+    });
+
+    li.addEventListener('mouseleave', () => {
+        const submenu = li.querySelector('ul');
+        if(submenu){
+            // Retraso antes de ocultar el submenú (ej: 400ms)
+            timeout = setTimeout(() => {
+                submenu.style.display = 'none';
+            }, 100);
+        }
+    });
+});
+document.querySelectorAll('#menu li').forEach(li => {
+    let timeout;
+
+    li.addEventListener('mouseenter', () => {
+        const submenu = li.querySelector('ul');
+        if(submenu){
+            clearTimeout(timeout);        // Evita que se cierre si el mouse vuelve rápido
+            submenu.classList.add('submenu-show');
+        }
+    });
+
+    li.addEventListener('mouseleave', () => {
+        const submenu = li.querySelector('ul');
+        if(submenu){
+            timeout = setTimeout(() => {
+                submenu.classList.remove('submenu-show');
+            }, 500);  // ⬅ Duración antes de desaparecer (500ms = 0.5s)
+        }
+    });
+});
+</script>
+
+</body>
+</html>

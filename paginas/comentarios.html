@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comentarios</title>
+<link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body class="comentarios-page">
+
+<header><h1>Comentarios</h1></header>
+<nav class="navbar">
+    <span class="hamburger" id="hamb">&#9776;</span>
+    <ul id="menu">
+         <li>
+            <a href="../index.html">Inicio</a>
+            
+        </li>
+        <li>
+            <a href="#">HTML Básico</a>
+            <ul class="sin-puntos">
+                
+                <li><a href="../paginas/html_basico.html">Ejemplo HTML</a></li>
+                <li><a href="../paginas/productos.html">Productos</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Banco</a>
+            <ul class="sin-puntos">
+                <li><a href="../paginas/banco_tabla.html">Movimientos</a></li>
+                <li><a href="../paginas/banco_miembros.html">Miembros</a></li>
+            </ul>
+        </li>
+        <li><a href="../paginas/galeria.html">Galería</a></li>
+        <li><a href="../paginas/operaciones.html">Operaciones</a></li>
+        <li>
+            <a href="#">Formularios</a>
+            <ul class="sin-puntos">
+                <li><a href="../paginas/matriculacion.html">Matriculación</a></li>
+                <li><a href="../paginas/prueba.html">Formulario de Prueba</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">APIs</a>
+            <ul class="sin-puntos">
+                <li><a href="../paginas/clima.html">Clima</a></li>
+                <li><a href="../paginas/paises.html">Países</a></li>
+                <li><a href="../paginas/pokemon.html">Pokémon</a></li>
+                <li><a href="../paginas/rick_morty.html">Rick & Morty</a></li>
+                <li><a href="../paginas/criptomonedas.html">Criptomonedas</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Multimedia</a>
+            <ul class="sin-puntos">
+                <li><a href="../paginas/multimedia1.html">Mapas</a></li>
+                <li><a href="../paginas/multimedia2.html">Videos YouTube</a></li>
+                <li><a href="../paginas/multimedia3.html">Videos y Audios</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Red Social</a>
+            <ul class="sin-puntos">
+                <li><a href="../paginas/redsocial.html">Posts</a></li>
+                <li><a href="../paginas/comentarios.html">Comentarios</a></li>
+                <li><a href="../paginas/noticias.html">Noticias</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Menús</a>
+            <ul class="sin-puntos">
+                <li><a href="../paginas/menu1.html">Menú 1</a></li>
+                <li><a href="../paginas/menu2.html">Menú 2</a></li>
+                <li><a href="../paginas/menu3.html">Menú 3</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+<div class="container">
+  <h2>Sección 1 – Opiniones sobre el sitio</h2>
+  <div class="comment-card">
+    <p><strong>Marcos:</strong> Me encanta la funcionalidad de la página, todo muy claro y fácil de usar.</p>
+    <button class="like-btn" onclick="likeComment(this)">👍 <span class="like-count">0</span></button>
+  </div>
+
+  <h2>Sección 2 – Sugerencias</h2>
+  <div class="comment-card">
+    <p><strong>Lucía:</strong> Sería genial agregar un buscador más rápido y filtros para las APIs.</p>
+    <button class="like-btn" onclick="likeComment(this)">👍 <span class="like-count">0</span></button>
+  </div>
+
+  <h2>Sección 3 – Comentarios generales</h2>
+  <div class="comment-card">
+    <p><strong>Carlos:</strong> Me gustan los colores y la estética verde, hace que todo sea más agradable.</p>
+    <button class="like-btn" onclick="likeComment(this)">👍 <span class="like-count">0</span></button>
+  </div>
+</div>
+
+<script>
+function likeComment(btn) {
+    const count = btn.querySelector('.like-count');
+    count.textContent = parseInt(count.textContent) + 1;
+
+    // Animación del pulgar
+    btn.classList.add('liked');
+    setTimeout(() => btn.classList.remove('liked'), 400);
+
+    // Animación del contador que sube
+    count.classList.add('liked-count');
+    setTimeout(() => count.classList.remove('liked-count'), 400);
+}
+</script>
+
+<footer>
+    &copy; 2025 – Proyecto Final • Marcos Cristaldo
+</footer>
+
+
+<script>
+// MENU MÓVIL FUNCIONAL
+const hamb = document.getElementById('hamb');
+const menu = document.getElementById('menu');
+
+// Toggle menú principal móvil
+hamb.addEventListener('click', () => {
+    menu.classList.toggle('open');
+    // Reset submenús
+    if(menu.classList.contains('open')){
+        document.querySelectorAll('#menu li ul').forEach(ul => ul.classList.remove('submenu-open'));
+    }
+});
+
+// Toggle submenús móviles
+document.querySelectorAll('#menu > li > a').forEach(item => {
+    item.addEventListener('click', e => {
+        const submenu = item.nextElementSibling;
+        if(submenu && submenu.tagName === 'UL'){
+            e.preventDefault();
+            // Cerrar otros submenús
+            document.querySelectorAll('#menu li ul').forEach(ul => {
+                if(ul !== submenu) ul.classList.remove('submenu-open');
+            });
+            // Abrir/Cerrar submenú
+            submenu.classList.toggle('submenu-open');
+        }
+    });
+});
+
+// Reset menú al cambiar tamaño
+window.addEventListener('resize', () => {
+    if(window.innerWidth > 768){
+        menu.classList.remove('open');
+        document.querySelectorAll('#menu li ul').forEach(ul => ul.classList.remove('submenu-open'));
+    }
+});
+
+
+document.querySelectorAll('#menu > li').forEach(li => {
+    let timeout;
+
+    li.addEventListener('mouseenter', () => {
+        const submenu = li.querySelector('ul');
+        if(submenu){
+            clearTimeout(timeout);
+            submenu.style.display = 'flex';
+        }
+    });
+
+    li.addEventListener('mouseleave', () => {
+        const submenu = li.querySelector('ul');
+        if(submenu){
+            // Retraso antes de ocultar el submenú (ej: 400ms)
+            timeout = setTimeout(() => {
+                submenu.style.display = 'none';
+            }, 100);
+        }
+    });
+});
+document.querySelectorAll('#menu li').forEach(li => {
+    let timeout;
+
+    li.addEventListener('mouseenter', () => {
+        const submenu = li.querySelector('ul');
+        if(submenu){
+            clearTimeout(timeout);        // Evita que se cierre si el mouse vuelve rápido
+            submenu.classList.add('submenu-show');
+        }
+    });
+
+    li.addEventListener('mouseleave', () => {
+        const submenu = li.querySelector('ul');
+        if(submenu){
+            timeout = setTimeout(() => {
+                submenu.classList.remove('submenu-show');
+            }, 500);  // ⬅ Duración antes de desaparecer (500ms = 0.5s)
+        }
+    });
+});
+</script>
+
+</body>
+</html>
