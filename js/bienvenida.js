@@ -1,6 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Solo pedir datos si estamos en index.html y aún no se guardó el mensaje
-    if (window.location.pathname.endsWith("index.html") && !sessionStorage.getItem('bienvenida')) {
+
+    // Detectar si estamos realmente en la página principal
+    const esInicio =
+        window.location.pathname === "/" ||             // GitHub Pages
+        window.location.pathname.endsWith("index.html"); // Uso local
+
+    if (esInicio && !sessionStorage.getItem('bienvenida')) {
 
         const nombre = prompt("Ingrese su nombre:");
         const apellido = prompt("Ingrese su apellido:");
@@ -14,15 +19,17 @@ document.addEventListener('DOMContentLoaded', () => {
             mensajeEdad = "Edad no válida";
         }
 
-        const mensajeFinal = `Hola <strong>${nombre} ${apellido}</strong>. ${mensajeEdad}. ¡Bienvenido al sitio!`;
+        const mensajeFinal =
+            `Hola <strong>${nombre} ${apellido}</strong>. ${mensajeEdad}. ¡Bienvenido al sitio!`;
 
-        // Guardar para no volver a pedir datos
+        // Guardar para mostrarlo sin volver a pedir datos
         sessionStorage.setItem('bienvenida', mensajeFinal);
     }
 
-    // Mostrar el mensaje guardado
+    // Mostrar el mensaje en pantalla
     const mensajeBienvenida = document.getElementById('mensajeBienvenida');
     if (mensajeBienvenida) {
-        mensajeBienvenida.innerHTML = sessionStorage.getItem('bienvenida') || "¡Bienvenido!";
+        mensajeBienvenida.innerHTML =
+            sessionStorage.getItem('bienvenida') || "¡Bienvenido!";
     }
 });
