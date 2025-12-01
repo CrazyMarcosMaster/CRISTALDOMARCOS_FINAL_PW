@@ -1,10 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const mensajeBienvenida = document.getElementById('mensajeBienvenida');
 
-    const esInicio =
-        window.location.pathname === "/" ||
-        window.location.pathname.endsWith("index.html");
-
-    if (esInicio && !sessionStorage.getItem('bienvenida')) {
+    if (mensajeBienvenida && !sessionStorage.getItem('bienvenida')) {
 
         const nombre = prompt("Ingrese su nombre:");
         const apellido = prompt("Ingrese su apellido:");
@@ -22,11 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
             `Hola <strong>${nombre} ${apellido}</strong>. ${mensajeEdad}. ¡Bienvenido al sitio!`;
 
         sessionStorage.setItem('bienvenida', mensajeFinal);
-    }
-
-    const mensajeBienvenida = document.getElementById('mensajeBienvenida');
-    if (mensajeBienvenida) {
-        mensajeBienvenida.innerHTML =
-            sessionStorage.getItem('bienvenida') || "¡Bienvenido!";
+        mensajeBienvenida.innerHTML = mensajeFinal;
+    } else if (mensajeBienvenida) {
+        // Mostrar mensaje guardado si ya existe
+        mensajeBienvenida.innerHTML = sessionStorage.getItem('bienvenida');
     }
 });
