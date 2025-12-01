@@ -1,9 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Detectar si estamos realmente en la página principal
     const esInicio =
-        window.location.pathname === "/" ||             // GitHub Pages
-        window.location.pathname.endsWith("index.html"); // Uso local
+        window.location.pathname === "/" ||
+        window.location.pathname.endsWith("index.html");
 
     if (esInicio && !sessionStorage.getItem('bienvenida')) {
 
@@ -22,11 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const mensajeFinal =
             `Hola <strong>${nombre} ${apellido}</strong>. ${mensajeEdad}. ¡Bienvenido al sitio!`;
 
-        // Guardar para mostrarlo sin volver a pedir datos
         sessionStorage.setItem('bienvenida', mensajeFinal);
     }
 
-    // Mostrar el mensaje en pantalla
     const mensajeBienvenida = document.getElementById('mensajeBienvenida');
     if (mensajeBienvenida) {
         mensajeBienvenida.innerHTML =
